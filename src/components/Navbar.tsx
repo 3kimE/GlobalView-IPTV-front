@@ -12,6 +12,8 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Channels", path: "/channels" },
     { name: "Live TV", path: "/live" },
+    { name: "Movies", path: "/movies" },
+    { name: "Sports", path: "/sports" },
     { name: "Pricing", path: "/pricing" },
   ];
 
