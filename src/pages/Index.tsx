@@ -7,6 +7,13 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Film, Play, TvMinimal } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const FeaturedMovies = () => {
   const featuredMovies = [
@@ -24,8 +31,28 @@ const FeaturedMovies = () => {
       id: 103,
       title: "Parasite",
       image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Parasite"
+    },
+    {
+      id: 104,
+      title: "Tenet",
+      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Tenet"
+    },
+    {
+      id: 105,
+      title: "Black Widow",
+      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Black+Widow"
+    },
+    {
+      id: 106,
+      title: "Dune",
+      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Dune"
     }
   ];
+
+  const carouselRef = useRef(null);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false })
+  );
 
   return (
     <section className="py-16 bg-iptv-dark">
@@ -39,30 +66,42 @@ const FeaturedMovies = () => {
           </Link>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredMovies.map((movie) => (
-            <div key={movie.id} className="card-gradient rounded-lg overflow-hidden hover-scale">
-              <div className="relative">
-                <img 
-                  src={movie.image} 
-                  alt={movie.title}
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Button 
-                    size="icon" 
-                    className="w-12 h-12 rounded-full bg-iptv-purple/90 hover:bg-iptv-purple"
-                  >
-                    <Play size={24} className="text-white" />
-                  </Button>
+        <Carousel
+          ref={carouselRef}
+          plugins={[autoplayPlugin.current]}
+          className="w-full"
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
+          <CarouselContent className="-ml-4">
+            {featuredMovies.map((movie) => (
+              <CarouselItem key={movie.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <div className="card-gradient rounded-lg overflow-hidden hover-scale">
+                  <div className="relative">
+                    <img 
+                      src={movie.image} 
+                      alt={movie.title}
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <Button 
+                        size="icon" 
+                        className="w-12 h-12 rounded-full bg-iptv-purple/90 hover:bg-iptv-purple"
+                      >
+                        <Play size={24} className="text-white" />
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-medium">{movie.title}</h3>
+                  </div>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-medium">{movie.title}</h3>
-              </div>
-            </div>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
         
         <div className="mt-10 text-center">
           <Link to="/movies">
@@ -77,11 +116,37 @@ const FeaturedMovies = () => {
 };
 
 const LiveSports = () => {
-  const liveEvent = {
-    title: "UEFA Champions League",
-    subtitle: "Quarter Finals",
-    image: "https://placehold.co/1000x400/8B5CF6/FFFFFF?text=UEFA+Champions+League"
-  };
+  const liveEvents = [
+    {
+      id: 201,
+      title: "UEFA Champions League",
+      subtitle: "Quarter Finals",
+      image: "https://placehold.co/800x350/8B5CF6/FFFFFF?text=UEFA+Champions+League"
+    },
+    {
+      id: 202,
+      title: "NBA Finals",
+      subtitle: "Game 5",
+      image: "https://placehold.co/800x350/8B5CF6/FFFFFF?text=NBA+Finals"
+    },
+    {
+      id: 203,
+      title: "Formula 1",
+      subtitle: "Monaco Grand Prix",
+      image: "https://placehold.co/800x350/8B5CF6/FFFFFF?text=Formula+1"
+    },
+    {
+      id: 204,
+      title: "UFC 285",
+      subtitle: "Jones vs Gane",
+      image: "https://placehold.co/800x350/8B5CF6/FFFFFF?text=UFC+285"
+    }
+  ];
+
+  const carouselRef = useRef(null);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: false })
+  );
 
   return (
     <section className="py-16 bg-gray-900">
@@ -95,30 +160,46 @@ const LiveSports = () => {
           </Link>
         </div>
         
-        <div className="card-gradient rounded-lg overflow-hidden">
-          <div className="relative">
-            <img 
-              src={liveEvent.image} 
-              alt={liveEvent.title}
-              className="w-full h-auto"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent">
-              <div className="absolute bottom-0 left-0 p-6">
-                <div className="flex items-center mb-2">
-                  <span className="animate-pulse mr-2 w-3 h-3 bg-red-600 rounded-full"></span>
-                  <span className="text-white text-sm font-medium">LIVE NOW</span>
+        <Carousel
+          ref={carouselRef}
+          plugins={[autoplayPlugin.current]}
+          className="w-full"
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
+          <CarouselContent className="-ml-4">
+            {liveEvents.map((event) => (
+              <CarouselItem key={event.id} className="pl-4 basis-full md:basis-3/4 lg:basis-2/3">
+                <div className="card-gradient rounded-lg overflow-hidden">
+                  <div className="relative">
+                    <img 
+                      src={event.image} 
+                      alt={event.title}
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent">
+                      <div className="absolute bottom-0 left-0 p-6">
+                        <div className="flex items-center mb-2">
+                          <span className="animate-pulse mr-2 w-3 h-3 bg-red-600 rounded-full"></span>
+                          <span className="text-white text-sm font-medium">LIVE NOW</span>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">{event.title}</h3>
+                        <p className="text-gray-300 mb-4">{event.subtitle}</p>
+                        <Link to="/sports">
+                          <Button className="bg-iptv-purple hover:bg-iptv-dark-purple">
+                            <Play className="mr-2" /> Watch Now
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">{liveEvent.title}</h3>
-                <p className="text-gray-300 mb-4">{liveEvent.subtitle}</p>
-                <Link to="/sports">
-                  <Button className="bg-iptv-purple hover:bg-iptv-dark-purple">
-                    <Play className="mr-2" /> Watch Now
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
         
         <div className="mt-10 text-center">
           <Link to="/sports">
