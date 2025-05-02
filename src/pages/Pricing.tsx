@@ -4,13 +4,6 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, X, ArrowRight, HelpCircle } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const pricingPlans = {
   monthly: [
@@ -165,20 +158,8 @@ const PricingPage = () => {
                         ) : (
                           <X size={18} className="text-red-500 mr-2 flex-shrink-0" />
                         )}
-                        <span className="text-gray-300 text-sm flex items-center">
+                        <span className="text-gray-300 text-sm">
                           {feature.text}
-                          {feature.tooltip && (
-                            <TooltipProvider>
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <HelpCircle className="h-3.5 w-3.5 ml-1 text-gray-400" />
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="w-64">{feature.tooltip}</p>
-                                </TooltipContent>
-                              </Tooltip>
-                            </TooltipProvider>
-                          )}
                         </span>
                       </div>
                     ))}
