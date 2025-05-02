@@ -1,211 +1,252 @@
 
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowRight, Mail, Phone, FileText, HelpCircle, MessageSquare } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import MapAgadir from "@/components/MapAgadir";
 
-const ContactMethod = ({ icon, title, value, link, linkText }) => (
-  <Card className="border border-gray-800 bg-iptv-dark p-6 flex flex-col items-center text-center hover-scale">
-    <div className="p-3 bg-iptv-purple/20 rounded-full mb-4">
-      {icon}
-    </div>
-    <h3 className="text-lg font-semibold mb-2">{title}</h3>
-    <p className="text-gray-400 mb-4">{value}</p>
-    {link && (
-      <a 
-        href={link} 
-        className="text-iptv-purple hover:underline"
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        {linkText}
-      </a>
-    )}
+// FAQ Categories and questions
+const faqCategories = [
+  {
+    id: "general",
+    title: "General Questions",
+    faqs: [
+      {
+        question: "What is StreamMaster?",
+        answer: "StreamMaster is a premium television service that delivers thousands of channels, movies, and shows over the internet. You can access content from around the world on any device with an internet connection."
+      },
+      {
+        question: "How does IPTV work?",
+        answer: "IPTV (Internet Protocol Television) delivers television content over Internet Protocol networks. Unlike traditional TV that broadcasts all channels at once, IPTV sends only the channel you request, making it more efficient and allowing for features like video on demand."
+      },
+      {
+        question: "Is StreamMaster legal?",
+        answer: "Yes, StreamMaster operates legally and ethically. We obtain proper licensing for the content we provide and comply with all relevant regulations in the territories where we operate."
+      }
+    ]
+  },
+  {
+    id: "subscription",
+    title: "Subscription & Pricing",
+    faqs: [
+      {
+        question: "What plans do you offer?",
+        answer: "We offer 1-month, 3-month, and 12-month subscription plans. All plans include access to our full channel lineup, but differ in length and number of concurrent connections allowed."
+      },
+      {
+        question: "Is there a free trial?",
+        answer: "Yes, we offer a 24-hour free trial so you can test our service before making a purchase. Contact our support team to request your trial access."
+      },
+      {
+        question: "What payment methods do you accept?",
+        answer: "We accept all major credit cards, PayPal, and cryptocurrency payments for your convenience and security."
+      }
+    ]
+  },
+  {
+    id: "technical",
+    title: "Technical Support",
+    faqs: [
+      {
+        question: "What devices can I watch on?",
+        answer: "You can watch on Smart TVs, Android devices, iOS devices (iPhone/iPad), Amazon Firestick, Windows, Mac, MAG boxes, and more. Our service works on virtually any device that can connect to the internet."
+      },
+      {
+        question: "How do I set up the service on my device?",
+        answer: "After subscribing, you'll receive detailed setup instructions via email. We provide step-by-step guides for all supported devices, and our support team is available 24/7 to help with any issues."
+      },
+      {
+        question: "Why am I experiencing buffering?",
+        answer: "Buffering can be caused by several factors: slow internet connection (we recommend at least 25Mbps for 4K content), network congestion, or device limitations. Try closing other applications, using a wired connection, or contacting our support for assistance."
+      }
+    ]
+  }
+];
+
+// Support card component
+const SupportCard = ({ icon, title, description, link }) => (
+  <Card className="bg-iptv-dark border border-gray-800 hover-scale">
+    <CardHeader className="flex flex-col items-center text-center">
+      <div className="p-3 bg-iptv-purple/20 rounded-full mb-4">
+        {icon}
+      </div>
+      <CardTitle className="text-lg">{title}</CardTitle>
+    </CardHeader>
+    <CardContent className="text-center">
+      <p className="text-gray-400 mb-4">{description}</p>
+      <div className="text-iptv-purple font-medium">{link}</div>
+    </CardContent>
   </Card>
 );
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message Sent!",
-        description: "We've received your message and will get back to you soon.",
-      });
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      setIsSubmitting(false);
-    }, 1500);
-  };
-
+const ContactAndSupport = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow pt-16">
-        <section className="py-12 md:py-20 relative">
-          {/* Background Effect */}
-          <div className="absolute top-0 left-1/2 w-3/4 h-3/4 -translate-x-1/2 bg-iptv-purple/20 rounded-full blur-[100px] -z-10" />
-          
+        {/* Contact Form Section */}
+        <section className="py-12 md:py-20 bg-gray-900">
           <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h1 className="text-3xl md:text-5xl font-bold mb-4">Get in Touch With Us</h1>
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4">Contact & Support</h1>
               <p className="text-gray-300">
-                Have questions or need assistance? Our team is here to help.
-                Fill out the form below and we'll get back to you as soon as possible.
+                Have questions or need assistance? Our team is here to help you with any inquiries about StreamMaster.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-              <ContactMethod 
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Contact Form */}
+                <div>
+                  <Card className="bg-iptv-dark border-gray-800">
+                    <CardHeader>
+                      <CardTitle>Send Us a Message</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <form className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+                            <Input id="name" placeholder="Your name" className="bg-gray-800 border-gray-700" />
+                          </div>
+                          <div>
+                            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+                            <Input id="email" type="email" placeholder="your@email.com" className="bg-gray-800 border-gray-700" />
+                          </div>
+                        </div>
+                        <div>
+                          <label htmlFor="subject" className="block text-sm font-medium mb-1">Subject</label>
+                          <Input id="subject" placeholder="How can we help you?" className="bg-gray-800 border-gray-700" />
+                        </div>
+                        <div>
+                          <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+                          <Textarea 
+                            id="message" 
+                            placeholder="Type your message here..." 
+                            className="bg-gray-800 border-gray-700 min-h-[150px]" 
+                          />
+                        </div>
+                        <Button className="w-full bg-iptv-purple hover:bg-iptv-dark-purple">
+                          Send Message <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </form>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                {/* Map */}
+                <div>
+                  <Card className="bg-iptv-dark border-gray-800 h-full">
+                    <CardHeader>
+                      <CardTitle>Visit Our Office</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex flex-col h-full">
+                      <div className="rounded-md overflow-hidden mb-6 flex-grow">
+                        <MapAgadir />
+                      </div>
+                      <div className="space-y-3 text-sm">
+                        <p className="flex items-center">
+                          <span className="font-medium mr-2">Address:</span> 
+                          <span className="text-gray-400">123 Avenue Hassan II, Agadir, Morocco</span>
+                        </p>
+                        <p className="flex items-center">
+                          <span className="font-medium mr-2">Hours:</span> 
+                          <span className="text-gray-400">Monday-Friday: 9AM-6PM | Saturday: 10AM-2PM</span>
+                        </p>
+                        <p className="flex items-center">
+                          <span className="font-medium mr-2">Email:</span> 
+                          <span className="text-gray-400">support@streammaster.com</span>
+                        </p>
+                        <p className="flex items-center">
+                          <span className="font-medium mr-2">Phone:</span> 
+                          <span className="text-gray-400">+212 500 123 456</span>
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Support Cards Section */}
+        <section className="py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">How Can We Help You?</h2>
+              <p className="text-gray-300 max-w-3xl mx-auto">
+                Our support team is available 24/7 to assist you with any questions or technical issues.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <SupportCard
                 icon={<Mail className="h-6 w-6 text-iptv-purple" />}
-                title="Email"
-                value="support@globalviewiptv.com"
-                link="mailto:support@globalviewiptv.com"
-                linkText="Send Email"
+                title="Email Support"
+                description="Send us an email and we'll get back to you within 24 hours."
+                link="support@streammaster.com"
               />
-              <ContactMethod 
+              <SupportCard
                 icon={<Phone className="h-6 w-6 text-iptv-purple" />}
-                title="Phone"
-                value="+1 (234) 567-8900"
-                link="tel:+12345678900"
-                linkText="Call Now"
+                title="Phone Support"
+                description="Speak directly with our technical support specialists."
+                link="+212 500 123 456"
+              />
+              <SupportCard
+                icon={<MessageSquare className="h-6 w-6 text-iptv-purple" />}
+                title="Documentation"
+                description="Browse our knowledge base for setup guides and tutorials."
+                link="View Guides"
               />
             </div>
-            
-            <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-              <div>
-                <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      Your Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="John Doe"
-                      className="bg-iptv-dark border-gray-700 focus:border-iptv-purple"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="john@example.com"
-                      className="bg-iptv-dark border-gray-700 focus:border-iptv-purple"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="How can we help you?"
-                      className="bg-iptv-dark border-gray-700 focus:border-iptv-purple"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Write your message here..."
-                      className="bg-iptv-dark border-gray-700 focus:border-iptv-purple min-h-[150px]"
-                      required
-                    />
-                  </div>
-                  <Button 
-                    type="submit" 
-                    className="bg-iptv-purple hover:bg-iptv-dark-purple w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Sending...
-                      </span>
-                    ) : (
-                      <span className="flex items-center">
-                        <Send className="mr-2 h-4 w-4" /> Send Message
-                      </span>
-                    )}
-                  </Button>
-                </form>
-              </div>
-              
-              <div>
-                <h2 className="text-2xl font-bold mb-6">Our Location</h2>
-                <div className="bg-iptv-dark border border-gray-800 rounded-lg overflow-hidden mb-6 h-64">
-                  <MapAgadir />
-                </div>
-                <div className="flex items-start space-x-4">
-                  <MapPin className="h-5 w-5 text-iptv-purple flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold">GlobalView IPTV Office</h3>
-                    <address className="not-italic text-gray-400">
-                      123 Avenue Hassan II<br />
-                      Agadir, 80000<br />
-                      Morocco
-                    </address>
-                  </div>
-                </div>
-              </div>
+          </div>
+        </section>
+        
+        {/* FAQ Section */}
+        <section className="py-12 md:py-16 bg-gray-900">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+              <p className="text-gray-300 max-w-3xl mx-auto">
+                Find answers to common questions about our service, pricing, and technical support.
+              </p>
             </div>
             
-            <div className="mt-16 text-center max-w-3xl mx-auto">
-              <h2 className="text-2xl font-bold mb-4">Business Hours</h2>
-              <p className="text-gray-300 mb-2">Our support team is available 24/7 to assist you.</p>
-              <p className="text-gray-400">
-                For business inquiries: Monday - Friday: 9:00 AM - 5:00 PM (GMT+1)
-              </p>
+            <div className="max-w-3xl mx-auto">
+              {faqCategories.map((category) => (
+                <div key={category.id} className="mb-8">
+                  <h3 className="text-xl font-semibold mb-4 text-iptv-purple">{category.title}</h3>
+                  <Accordion type="single" collapsible className="w-full">
+                    {category.faqs.map((faq, index) => (
+                      <AccordionItem key={index} value={`${category.id}-item-${index}`} className="border-b border-gray-800">
+                        <AccordionTrigger className="text-left hover:text-iptv-purple">
+                          {faq.question}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-gray-400">
+                          {faq.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
+              ))}
+            </div>
+            
+            <div className="text-center mt-8">
+              <p className="text-gray-400 mb-6">Can't find what you're looking for?</p>
+              <div className="inline-flex items-center bg-iptv-purple/20 text-iptv-purple px-4 py-2 rounded-full">
+                <HelpCircle className="mr-2 h-5 w-5" /> Contact our support team for more help
+              </div>
             </div>
           </div>
         </section>
@@ -215,4 +256,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactAndSupport;

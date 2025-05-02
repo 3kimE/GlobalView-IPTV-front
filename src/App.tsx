@@ -7,10 +7,11 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Channels from "./pages/Channels";
 import Pricing from "./pages/Pricing";
-import Features from "./pages/Features";
-import Support from "./pages/Support";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Live from "./pages/Live";
+import Checkout from "./pages/Checkout";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 const queryClient = new QueryClient();
 
@@ -23,9 +24,10 @@ const App = () => (
         <Route path="/" element={<Home />} />
         <Route path="/channels" element={<Channels />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/support" element={<Support />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/live/:channelId" element={<Live />} />
+        <Route path="/checkout/:planId" element={<Checkout />} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>

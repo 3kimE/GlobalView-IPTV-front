@@ -1,6 +1,17 @@
 
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
+
+// Payment method images
+const paymentMethods = [
+  { name: "PayPal", logo: "https://placehold.co/200x80/262626/FFFFFF?text=PayPal" },
+  { name: "Visa", logo: "https://placehold.co/200x80/262626/FFFFFF?text=Visa" },
+  { name: "MasterCard", logo: "https://placehold.co/200x80/262626/FFFFFF?text=MasterCard" },
+  { name: "American Express", logo: "https://placehold.co/200x80/262626/FFFFFF?text=Amex" },
+  { name: "Apple Pay", logo: "https://placehold.co/200x80/262626/FFFFFF?text=Apple+Pay" },
+  { name: "Google Pay", logo: "https://placehold.co/200x80/262626/FFFFFF?text=Google+Pay" },
+];
 
 const Pricing = () => {
   const plans = [
@@ -17,7 +28,8 @@ const Pricing = () => {
         "Basic Support"
       ],
       buttonText: "Choose Basic",
-      popular: false
+      popular: false,
+      checkoutLink: "/checkout/basic"
     },
     {
       name: "Premium",
@@ -32,7 +44,8 @@ const Pricing = () => {
         "Priority Support"
       ],
       buttonText: "Choose Premium",
-      popular: true
+      popular: true,
+      checkoutLink: "/checkout/premium"
     },
     {
       name: "Ultimate",
@@ -47,7 +60,8 @@ const Pricing = () => {
         "24/7 Premium Support"
       ],
       buttonText: "Choose Ultimate",
-      popular: false
+      popular: false,
+      checkoutLink: "/checkout/ultimate"
     }
   ];
 
@@ -95,21 +109,33 @@ const Pricing = () => {
                 ))}
               </div>
               
-              <Button 
-                className={`w-full ${
-                  plan.popular 
-                    ? "bg-iptv-purple hover:bg-iptv-dark-purple" 
-                    : "bg-gray-800 hover:bg-gray-700"
-                } text-white`}
-              >
-                {plan.buttonText}
-              </Button>
+              <Link to={plan.checkoutLink}>
+                <Button 
+                  className={`w-full ${
+                    plan.popular 
+                      ? "bg-iptv-purple hover:bg-iptv-dark-purple" 
+                      : "bg-gray-800 hover:bg-gray-700"
+                  } text-white`}
+                >
+                  {plan.buttonText}
+                </Button>
+              </Link>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-10 text-gray-400 text-sm">
-          <p>All plans include a 7-day money-back guarantee. No questions asked.</p>
+        <div className="mt-16">
+          <h3 className="text-xl font-semibold mb-6 text-center">Accepted Payment Methods</h3>
+          <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
+            {paymentMethods.map((method, index) => (
+              <div key={index} className="bg-iptv-dark border border-gray-800 rounded-lg p-4 hover-scale">
+                <img src={method.logo} alt={method.name} className="h-10" />
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm text-gray-400 mt-6">
+            Secure payment processing. Your payment information is never stored.
+          </p>
         </div>
       </div>
     </section>

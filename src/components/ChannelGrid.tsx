@@ -2,29 +2,37 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
-// Enhanced channel data
+// Enhanced channel data with better images
 const channels = [
-  { id: 1, name: "Sports Channel", category: "Sports", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=SC", description: "Live sports from around the world" },
-  { id: 2, name: "Movie Central", category: "Movies", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=MC", description: "Latest blockbusters and classics" },
-  { id: 3, name: "News 24/7", category: "News", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=N24", description: "Breaking news and analysis" },
-  { id: 4, name: "Kids Zone", category: "Kids", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=KZ", description: "Entertainment for children" },
-  { id: 5, name: "Music TV", category: "Music", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=MTV", description: "Music videos and concerts" },
-  { id: 6, name: "Documentary World", category: "Documentary", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=DW", description: "Fascinating documentaries" },
-  { id: 7, name: "Entertainment Plus", category: "Entertainment", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=EP", description: "Shows and entertainment" },
-  { id: 8, name: "Science Channel", category: "Education", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=SC", description: "Science and education" },
-  { id: 9, name: "Action Movies", category: "Movies", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=AM", description: "Action-packed movies" },
-  { id: 10, name: "Comedy Central", category: "Comedy", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=CC", description: "Comedy shows and sitcoms" },
-  { id: 11, name: "Drama TV", category: "Drama", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=DT", description: "Drama series and shows" },
-  { id: 12, name: "Reality Show Network", category: "Reality", logo: "https://placehold.co/200x200/8B5CF6/FFFFFF?text=RSN", description: "Reality TV shows" },
+  { id: 1, name: "Sports Channel", category: "Sports", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Sports+Channel", description: "Live sports from around the world", background: "https://placehold.co/800x450/262626/FFFFFF?text=Sports+Background" },
+  { id: 2, name: "Movie Central", category: "Movies", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Movie+Central", description: "Latest blockbusters and classics", background: "https://placehold.co/800x450/262626/FFFFFF?text=Movies+Background" },
+  { id: 3, name: "News 24/7", category: "News", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=News+24%2F7", description: "Breaking news and analysis", background: "https://placehold.co/800x450/262626/FFFFFF?text=News+Background" },
+  { id: 4, name: "Kids Zone", category: "Kids", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Kids+Zone", description: "Entertainment for children", background: "https://placehold.co/800x450/262626/FFFFFF?text=Kids+Background" },
+  { id: 5, name: "Music TV", category: "Music", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Music+TV", description: "Music videos and concerts", background: "https://placehold.co/800x450/262626/FFFFFF?text=Music+Background" },
+  { id: 6, name: "Documentary World", category: "Documentary", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Documentary+World", description: "Fascinating documentaries", background: "https://placehold.co/800x450/262626/FFFFFF?text=Documentary+Background" },
+  { id: 7, name: "Entertainment Plus", category: "Entertainment", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Entertainment+Plus", description: "Shows and entertainment", background: "https://placehold.co/800x450/262626/FFFFFF?text=Entertainment+Background" },
+  { id: 8, name: "Science Channel", category: "Education", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Science+Channel", description: "Science and education", background: "https://placehold.co/800x450/262626/FFFFFF?text=Education+Background" },
+  { id: 9, name: "Action Movies", category: "Movies", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Action+Movies", description: "Action-packed movies", background: "https://placehold.co/800x450/262626/FFFFFF?text=Action+Background" },
+  { id: 10, name: "Comedy Central", category: "Comedy", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Comedy+Central", description: "Comedy shows and sitcoms", background: "https://placehold.co/800x450/262626/FFFFFF?text=Comedy+Background" },
+  { id: 11, name: "Drama TV", category: "Drama", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Drama+TV", description: "Drama series and shows", background: "https://placehold.co/800x450/262626/FFFFFF?text=Drama+Background" },
+  { id: 12, name: "Reality Show Network", category: "Reality", logo: "https://placehold.co/400x300/8B5CF6/FFFFFF?text=Reality+Show+Network", description: "Reality TV shows", background: "https://placehold.co/800x450/262626/FFFFFF?text=Reality+Background" },
 ];
 
 const ChannelGrid = () => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       {channels.map((channel) => (
         <Link to={`/live/${channel.id}`} key={channel.id}>
-          <Card className="overflow-hidden hover-scale bg-iptv-dark border-gray-800 card-gradient h-full">
-            <CardContent className="p-4 text-center flex flex-col justify-between h-full">
+          <Card className="overflow-hidden hover-scale border-gray-800 h-full relative">
+            <div 
+              className="absolute inset-0 z-0 opacity-30"
+              style={{
+                backgroundImage: `url(${channel.background})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            />
+            <CardContent className="p-4 text-center flex flex-col justify-between h-full relative z-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
               <div className="mb-3 flex justify-center">
                 <img
                   src={channel.logo}

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,15 +7,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import { Search, TvMinimal, ArrowRight } from "lucide-react";
 
-// Sample channel data
+// Sample channel data with enhanced images
 const channelsData = {
   sports: [
-    { id: 1, name: "ESPN", logo: "https://placehold.co/300x200/262626/FFFFFF?text=ESPN", category: "sports" },
-    { id: 2, name: "Sky Sports", logo: "https://placehold.co/300x200/262626/FFFFFF?text=Sky+Sports", category: "sports" },
-    { id: 3, name: "BT Sport", logo: "https://placehold.co/300x200/262626/FFFFFF?text=BT+Sport", category: "sports" },
-    { id: 4, name: "NBC Sports", logo: "https://placehold.co/300x200/262626/FFFFFF?text=NBC+Sports", category: "sports" },
-    { id: 5, name: "Fox Sports", logo: "https://placehold.co/300x200/262626/FFFFFF?text=Fox+Sports", category: "sports" },
-    { id: 6, name: "BeIN Sports", logo: "https://placehold.co/300x200/262626/FFFFFF?text=BeIN+Sports", category: "sports" },
+    { id: 1, name: "ESPN", logo: "https://placehold.co/300x200/262626/FFFFFF?text=ESPN", category: "sports", background: "https://placehold.co/800x450/262626/FFFFFF?text=ESPN+Background" },
+    { id: 2, name: "Sky Sports", logo: "https://placehold.co/300x200/262626/FFFFFF?text=Sky+Sports", category: "sports", background: "https://placehold.co/800x450/262626/FFFFFF?text=Sky+Sports+Background" },
+    { id: 3, name: "BT Sport", logo: "https://placehold.co/300x200/262626/FFFFFF?text=BT+Sport", category: "sports", background: "https://placehold.co/800x450/262626/FFFFFF?text=BT+Sport+Background" },
+    { id: 4, name: "NBC Sports", logo: "https://placehold.co/300x200/262626/FFFFFF?text=NBC+Sports", category: "sports", background: "https://placehold.co/800x450/262626/FFFFFF?text=NBC+Sports+Background" },
+    { id: 5, name: "Fox Sports", logo: "https://placehold.co/300x200/262626/FFFFFF?text=Fox+Sports", category: "sports", background: "https://placehold.co/800x450/262626/FFFFFF?text=Fox+Sports+Background" },
+    { id: 6, name: "BeIN Sports", logo: "https://placehold.co/300x200/262626/FFFFFF?text=BeIN+Sports", category: "sports", background: "https://placehold.co/800x450/262626/FFFFFF?text=BeIN+Sports+Background" },
   ],
   movies: [
     { id: 11, name: "HBO", logo: "https://placehold.co/300x200/262626/FFFFFF?text=HBO", category: "movies" },
@@ -81,18 +80,26 @@ const allChannels = Object.values(channelsData).flat();
 
 const ChannelGrid = ({ channels }) => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       {channels.map((channel) => (
         <div 
           key={channel.id} 
-          className="bg-iptv-dark border border-gray-800 rounded-lg overflow-hidden hover-scale"
+          className="bg-iptv-dark border border-gray-800 rounded-lg overflow-hidden hover-scale relative"
         >
+          <div 
+            className="absolute inset-0 z-0 opacity-30"
+            style={{
+              backgroundImage: `url(${channel.background || 'https://placehold.co/800x450/262626/FFFFFF?text=Channel+Background'})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          />
           <img 
             src={channel.logo} 
             alt={channel.name} 
-            className="w-full h-auto"
+            className="w-full h-auto relative z-10"
           />
-          <div className="p-2 text-center">
+          <div className="p-2 text-center relative z-10 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
             <h3 className="text-sm font-medium">{channel.name}</h3>
           </div>
         </div>
