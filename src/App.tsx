@@ -4,12 +4,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Home from "./pages/Home";
 import Channels from "./pages/Channels";
-import Live from "./pages/Live";
-import PricingPage from "./pages/PricingPage";
-import Movies from "./pages/Movies";
-import Sports from "./pages/Sports";
+import Pricing from "./pages/Pricing";
+import Features from "./pages/Features";
+import Support from "./pages/Support";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,13 +20,12 @@ const App = () => (
       <Toaster />
       <Sonner />
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="/" element={<Home />} />
         <Route path="/channels" element={<Channels />} />
-        <Route path="/live" element={<Live />} />
-        <Route path="/live/:channelId" element={<Live />} />
-        <Route path="/pricing" element={<PricingPage />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/sports" element={<Sports />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>

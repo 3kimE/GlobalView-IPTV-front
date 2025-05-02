@@ -11,10 +11,10 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Channels", path: "/channels" },
-    { name: "Live TV", path: "/live" },
-    { name: "Movies", path: "/movies" },
-    { name: "Sports", path: "/sports" },
     { name: "Pricing", path: "/pricing" },
+    { name: "Features", path: "/features" },
+    { name: "Support", path: "/support" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const isActive = (path: string) => {
@@ -22,11 +22,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 blur-bg">
+    <nav className="fixed top-0 w-full z-50 blur-bg border-b border-gray-800">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <TvMinimal className="w-8 h-8 text-iptv-purple" />
-          <span className="text-xl font-bold gradient-text">StreamView</span>
+          <span className="text-xl font-bold gradient-text">GlobalView IPTV</span>
         </Link>
 
         {/* Desktop Navigation */}
