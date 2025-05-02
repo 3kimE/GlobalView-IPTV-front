@@ -5,9 +5,10 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MessageSquare, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
+import MapAgadir from "@/components/MapAgadir";
 
 const ContactMethod = ({ icon, title, value, link, linkText }) => (
   <Card className="border border-gray-800 bg-iptv-dark p-6 flex flex-col items-center text-center hover-scale">
@@ -80,7 +81,7 @@ const Contact = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               <ContactMethod 
                 icon={<Mail className="h-6 w-6 text-iptv-purple" />}
                 title="Email"
@@ -94,13 +95,6 @@ const Contact = () => {
                 value="+1 (234) 567-8900"
                 link="tel:+12345678900"
                 linkText="Call Now"
-              />
-              <ContactMethod 
-                icon={<MessageSquare className="h-6 w-6 text-iptv-purple" />}
-                title="Live Chat"
-                value="Chat with our support team"
-                link="#"
-                linkText="Start Chat"
               />
             </div>
             
@@ -189,21 +183,17 @@ const Contact = () => {
               
               <div>
                 <h2 className="text-2xl font-bold mb-6">Our Location</h2>
-                <div className="bg-iptv-dark border border-gray-800 rounded-lg overflow-hidden mb-6">
-                  <div className="bg-gray-800 h-64 flex items-center justify-center">
-                    <MapPin className="h-12 w-12 text-gray-600" />
-                    <span className="sr-only">Map Placeholder</span>
-                  </div>
+                <div className="bg-iptv-dark border border-gray-800 rounded-lg overflow-hidden mb-6 h-64">
+                  <MapAgadir />
                 </div>
                 <div className="flex items-start space-x-4">
                   <MapPin className="h-5 w-5 text-iptv-purple flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold">GlobalView IPTV Headquarters</h3>
+                    <h3 className="font-semibold">GlobalView IPTV Office</h3>
                     <address className="not-italic text-gray-400">
-                      123 Streaming Avenue<br />
-                      Tech District<br />
-                      San Francisco, CA 94105<br />
-                      United States
+                      123 Avenue Hassan II<br />
+                      Agadir, 80000<br />
+                      Morocco
                     </address>
                   </div>
                 </div>
@@ -214,7 +204,7 @@ const Contact = () => {
               <h2 className="text-2xl font-bold mb-4">Business Hours</h2>
               <p className="text-gray-300 mb-2">Our support team is available 24/7 to assist you.</p>
               <p className="text-gray-400">
-                For business inquiries: Monday - Friday: 9:00 AM - 5:00 PM (PST)
+                For business inquiries: Monday - Friday: 9:00 AM - 5:00 PM (GMT+1)
               </p>
             </div>
           </div>

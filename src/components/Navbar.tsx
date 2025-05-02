@@ -42,10 +42,6 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-
-          <Button className="bg-iptv-purple hover:bg-iptv-dark-purple text-white">
-            Sign In
-          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -75,9 +71,6 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button className="bg-iptv-purple hover:bg-iptv-dark-purple text-white w-full">
-              Sign In
-            </Button>
           </div>
         </div>
       )}

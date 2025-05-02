@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, X, ArrowRight, HelpCircle } from "lucide-react";
 
+// Image imports for payment methods
+const paymentMethodIcons = {
+  paypal: "https://placehold.co/100x40/262626/FFFFFF?text=PayPal",
+  visa: "https://placehold.co/100x40/262626/FFFFFF?text=Visa",
+  mastercard: "https://placehold.co/100x40/262626/FFFFFF?text=MasterCard",
+  amex: "https://placehold.co/100x40/262626/FFFFFF?text=Amex",
+};
+
 const pricingPlans = {
   monthly: [
     {
@@ -54,6 +62,22 @@ const pricingPlans = {
   ],
 };
 
+const PaymentMethods = () => (
+  <div className="mt-10 text-center">
+    <h3 className="text-xl font-semibold mb-4">Payment Methods We Accept</h3>
+    <div className="flex flex-wrap justify-center gap-4 max-w-lg mx-auto">
+      {Object.entries(paymentMethodIcons).map(([name, src]) => (
+        <div key={name} className="bg-gray-800 rounded-md p-3">
+          <img src={src} alt={`${name} payment`} className="h-8" />
+        </div>
+      ))}
+    </div>
+    <p className="text-gray-400 text-sm mt-4">
+      All payments are processed securely. We never store your payment information.
+    </p>
+  </div>
+);
+
 const FAQSection = () => {
   const faqItems = [
     {
@@ -100,6 +124,20 @@ const FAQSection = () => {
   );
 };
 
+const FreeTrial = () => (
+  <div className="my-12 bg-gradient-to-r from-iptv-purple/20 to-iptv-dark-purple/20 rounded-xl p-8 max-w-4xl mx-auto border border-iptv-purple/30">
+    <div className="text-center">
+      <h2 className="text-2xl font-bold mb-4">Not sure yet? Try our service for free</h2>
+      <p className="text-gray-300 mb-6">
+        Get 24-hour free access to all our channels and features with no commitment.
+      </p>
+      <Button className="bg-iptv-purple hover:bg-iptv-dark-purple">
+        Get Free 24h Trial
+      </Button>
+    </div>
+  </div>
+);
+
 const PricingPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -115,11 +153,7 @@ const PricingPage = () => {
               </p>
             </div>
             
-            <div className="flex justify-center mb-12">
-              <Button className="bg-iptv-purple hover:bg-iptv-dark-purple">
-                Get Free 24h Trial
-              </Button>
-            </div>
+            <FreeTrial />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {pricingPlans.monthly.map((plan, index) => (
@@ -178,9 +212,7 @@ const PricingPage = () => {
               ))}
             </div>
 
-            <div className="text-center mt-10 text-gray-400 text-sm">
-              <p>All plans include a 7-day money-back guarantee. No questions asked.</p>
-            </div>
+            <PaymentMethods />
             
             <FAQSection />
             

@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, MessageSquare, Mail, Phone, FileText, HelpCircle } from "lucide-react";
+import { ArrowRight, Mail, Phone, FileText, HelpCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -135,14 +135,7 @@ const Support = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-              <SupportCard
-                icon={<MessageSquare className="h-6 w-6 text-iptv-purple" />}
-                title="Live Chat"
-                description="Get instant help from our support agents through live chat."
-                buttonText="Start Chat"
-                buttonLink="/contact"
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
               <SupportCard
                 icon={<Mail className="h-6 w-6 text-iptv-purple" />}
                 title="Email Support"

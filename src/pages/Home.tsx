@@ -7,6 +7,7 @@ import { ArrowRight, Zap, Shield, Clock, Star } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 // Channel logos for carousel
 const channelLogos = [
@@ -98,6 +99,9 @@ const WhyChooseUs = () => {
 
 const ChannelsCarousel = () => {
   const carouselRef = useRef(null);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: false })
+  );
 
   return (
     <section className="py-16 bg-iptv-dark">
@@ -116,6 +120,7 @@ const ChannelsCarousel = () => {
             align: "start",
             loop: true,
           }}
+          plugins={[autoplayPlugin.current]}
         >
           <CarouselContent className="-ml-4">
             {channelLogos.map((channel) => (
@@ -145,6 +150,11 @@ const ChannelsCarousel = () => {
 };
 
 const TestimonialsSection = () => {
+  const carouselRef = useRef(null);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: false })
+  );
+
   return (
     <section className="py-20 bg-gray-900">
       <div className="container mx-auto px-4">
@@ -155,25 +165,34 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {testimonials.map((testimonial) => (
-            <div 
-              key={testimonial.id}
-              className="bg-iptv-dark border border-gray-800 rounded-xl p-6 hover-scale"
-            >
-              <div className="flex mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-iptv-purple text-iptv-purple" />
-                ))}
-              </div>
-              <p className="text-gray-300 mb-4">{testimonial.text}</p>
-              <div>
-                <h4 className="font-medium">{testimonial.name}</h4>
-                <p className="text-sm text-gray-400">{testimonial.location}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          ref={carouselRef}
+          className="w-full max-w-5xl mx-auto"
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          plugins={[autoplayPlugin.current]}
+        >
+          <CarouselContent>
+            {testimonials.map((testimonial) => (
+              <CarouselItem key={testimonial.id} className="px-4 md:basis-1/1">
+                <div className="bg-iptv-dark border border-gray-800 rounded-xl p-6 hover-scale">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-iptv-purple text-iptv-purple" />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 mb-4">{testimonial.text}</p>
+                  <div>
+                    <h4 className="font-medium">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-400">{testimonial.location}</p>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );
