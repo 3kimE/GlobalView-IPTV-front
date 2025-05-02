@@ -3,23 +3,97 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Zap, Shield, Clock, Star } from "lucide-react";
+import { ArrowRight, Zap, Shield, Clock, Star, Play, Film, TvMinimal } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-// Channel logos for carousel
+// Channel logos for carousel - with better images
 const channelLogos = [
-  { id: 1, name: "HBO", logo: "https://placehold.co/200x100/262626/FFFFFF?text=HBO" },
-  { id: 2, name: "Netflix", logo: "https://placehold.co/200x100/262626/FFFFFF?text=Netflix" },
-  { id: 3, name: "Disney+", logo: "https://placehold.co/200x100/262626/FFFFFF?text=Disney%2B" },
-  { id: 4, name: "ESPN", logo: "https://placehold.co/200x100/262626/FFFFFF?text=ESPN" },
-  { id: 5, name: "BBC", logo: "https://placehold.co/200x100/262626/FFFFFF?text=BBC" },
-  { id: 6, name: "CNN", logo: "https://placehold.co/200x100/262626/FFFFFF?text=CNN" },
-  { id: 7, name: "Fox", logo: "https://placehold.co/200x100/262626/FFFFFF?text=FOX" },
-  { id: 8, name: "Sky Sports", logo: "https://placehold.co/200x100/262626/FFFFFF?text=Sky+Sports" },
-  { id: 9, name: "Amazon Prime", logo: "https://placehold.co/200x100/262626/FFFFFF?text=Prime" },
+  { id: 1, name: "HBO", logo: "https://placehold.co/300x200/262626/FFFFFF?text=HBO" },
+  { id: 2, name: "Netflix", logo: "https://placehold.co/300x200/E50914/FFFFFF?text=Netflix" },
+  { id: 3, name: "Disney+", logo: "https://placehold.co/300x200/0063E5/FFFFFF?text=Disney%2B" },
+  { id: 4, name: "ESPN", logo: "https://placehold.co/300x200/D00/FFFFFF?text=ESPN" },
+  { id: 5, name: "BBC", logo: "https://placehold.co/300x200/000000/FFFFFF?text=BBC" },
+  { id: 6, name: "CNN", logo: "https://placehold.co/300x200/CC0000/FFFFFF?text=CNN" },
+  { id: 7, name: "Fox", logo: "https://placehold.co/300x200/1E4C9A/FFFFFF?text=FOX" },
+  { id: 8, name: "Sky Sports", logo: "https://placehold.co/300x200/0072C9/FFFFFF?text=Sky+Sports" },
+  { id: 9, name: "Amazon Prime", logo: "https://placehold.co/300x200/00A8E1/FFFFFF?text=Prime" },
+  { id: 10, name: "DAZN", logo: "https://placehold.co/300x200/1A1A1A/FFFFFF?text=DAZN" },
+  { id: 11, name: "Showtime", logo: "https://placehold.co/300x200/B10000/FFFFFF?text=Showtime" },
+  { id: 12, name: "Hulu", logo: "https://placehold.co/300x200/1CE783/FFFFFF?text=Hulu" },
+  { id: 13, name: "Apple TV+", logo: "https://placehold.co/300x200/000000/FFFFFF?text=Apple+TV%2B" },
+  { id: 14, name: "Paramount+", logo: "https://placehold.co/300x200/0064FF/FFFFFF?text=Paramount%2B" },
+  { id: 15, name: "Discovery+", logo: "https://placehold.co/300x200/FFA800/FFFFFF?text=Discovery%2B" },
+];
+
+// Featured movies for carousel
+const featuredMovies = [
+  { 
+    id: 1, 
+    title: "Avengers: Endgame", 
+    genre: "Action/Sci-Fi",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Avengers:+Endgame" 
+  },
+  { 
+    id: 2, 
+    title: "Joker", 
+    genre: "Drama/Thriller",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Joker" 
+  },
+  { 
+    id: 3, 
+    title: "Parasite", 
+    genre: "Drama/Thriller",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Parasite" 
+  },
+  { 
+    id: 4, 
+    title: "Tenet", 
+    genre: "Action/Sci-Fi",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Tenet" 
+  },
+  { 
+    id: 5, 
+    title: "Black Widow", 
+    genre: "Action/Adventure",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Black+Widow" 
+  },
+  { 
+    id: 6, 
+    title: "Dune", 
+    genre: "Sci-Fi/Adventure",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Dune" 
+  },
+];
+
+// Live sports events
+const liveEvents = [
+  { 
+    id: 1, 
+    title: "UEFA Champions League", 
+    subtitle: "Quarter Finals",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=UEFA+Champions+League" 
+  },
+  { 
+    id: 2, 
+    title: "NBA Finals", 
+    subtitle: "Game 5",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=NBA+Finals" 
+  },
+  { 
+    id: 3, 
+    title: "Formula 1", 
+    subtitle: "Monaco Grand Prix",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Formula+1" 
+  },
+  { 
+    id: 4, 
+    title: "UFC 285", 
+    subtitle: "Jones vs Gane",
+    image: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=UFC+285" 
+  },
 ];
 
 // Testimonial data
@@ -29,21 +103,40 @@ const testimonials = [
     name: "Sarah Johnson",
     location: "New York, USA",
     text: "I've tried several IPTV services, but GlobalView is by far the best. The picture quality is amazing and there's never any buffering issues.",
-    rating: 5
+    rating: 5,
+    avatar: "https://placehold.co/100x100/8B5CF6/FFFFFF?text=SJ"
   },
   {
     id: 2,
     name: "Michael Chen",
     location: "Toronto, Canada",
     text: "The channel selection is incredible. I can watch all my favorite shows and sports events in one place. Customer support is also top-notch!",
-    rating: 5
+    rating: 5,
+    avatar: "https://placehold.co/100x100/8B5CF6/FFFFFF?text=MC"
   },
   {
     id: 3,
     name: "Emma Thompson",
     location: "London, UK",
     text: "GlobalView IPTV has transformed how my family watches TV. We love the variety of international channels and the kids section is great.",
-    rating: 4
+    rating: 4,
+    avatar: "https://placehold.co/100x100/8B5CF6/FFFFFF?text=ET"
+  },
+  {
+    id: 4,
+    name: "Carlos Rodriguez",
+    location: "Madrid, Spain",
+    text: "The streaming quality is excellent. I can watch my favorite football matches in crystal clear HD without any lag or interruptions.",
+    rating: 5,
+    avatar: "https://placehold.co/100x100/8B5CF6/FFFFFF?text=CR"
+  },
+  {
+    id: 5,
+    name: "Aisha Khan",
+    location: "Dubai, UAE",
+    text: "GlobalView IPTV offers the best selection of international channels. I can watch content from all over the world with perfect quality.",
+    rating: 5,
+    avatar: "https://placehold.co/100x100/8B5CF6/FFFFFF?text=AK"
   }
 ];
 
@@ -100,7 +193,7 @@ const WhyChooseUs = () => {
 const ChannelsCarousel = () => {
   const carouselRef = useRef(null);
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: false })
+    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })
   );
 
   return (
@@ -113,29 +206,33 @@ const ChannelsCarousel = () => {
           </p>
         </div>
 
-        <Carousel
-          ref={carouselRef}
-          className="w-full"
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          plugins={[autoplayPlugin.current]}
-        >
-          <CarouselContent className="-ml-4">
-            {channelLogos.map((channel) => (
-              <CarouselItem key={channel.id} className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">
-                <div className="card-gradient rounded-lg overflow-hidden hover-scale p-4 flex items-center justify-center h-24">
-                  <img 
-                    src={channel.logo} 
-                    alt={channel.name}
-                    className="max-w-full max-h-full"
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+        <div className="relative">
+          <Carousel
+            ref={carouselRef}
+            className="w-full"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[autoplayPlugin.current]}
+          >
+            <CarouselContent className="-ml-4">
+              {channelLogos.map((channel) => (
+                <CarouselItem key={channel.id} className="pl-4 basis-1/5 md:basis-1/5">
+                  <div className="card-gradient rounded-lg overflow-hidden hover-scale p-4 flex items-center justify-center h-28">
+                    <img 
+                      src={channel.logo} 
+                      alt={channel.name}
+                      className="max-w-full max-h-full"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
 
         <div className="mt-10 text-center">
           <Link to="/channels">
@@ -149,10 +246,153 @@ const ChannelsCarousel = () => {
   );
 };
 
+const FeaturedMoviesCarousel = () => {
+  const carouselRef = useRef(null);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
+
+  return (
+    <section className="py-16 bg-gray-900">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Movies</h2>
+          <p className="text-gray-300 max-w-3xl mx-auto">
+            Enjoy the latest blockbusters and classic films in stunning HD and 4K quality.
+          </p>
+        </div>
+
+        <div className="relative">
+          <Carousel
+            ref={carouselRef}
+            className="w-full"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[autoplayPlugin.current]}
+          >
+            <CarouselContent className="-ml-4">
+              {featuredMovies.map((movie) => (
+                <CarouselItem key={movie.id} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                  <div className="card-gradient rounded-lg overflow-hidden hover-scale">
+                    <div className="relative">
+                      <img 
+                        src={movie.image} 
+                        alt={movie.title}
+                        className="w-full h-auto object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <Button 
+                          size="icon" 
+                          className="w-12 h-12 rounded-full bg-iptv-purple/90 hover:bg-iptv-purple"
+                        >
+                          <Play size={24} className="text-white" />
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-lg font-medium">{movie.title}</h3>
+                      <p className="text-sm text-gray-400">{movie.genre}</p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link to="/movies">
+            <Button className="bg-iptv-purple hover:bg-iptv-dark-purple">
+              <Film className="mr-2 h-4 w-4" /> Explore All Movies
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const LiveSportsCarousel = () => {
+  const carouselRef = useRef(null);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
+
+  return (
+    <section className="py-16 bg-iptv-dark">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Live Sports Events</h2>
+          <p className="text-gray-300 max-w-3xl mx-auto">
+            Never miss a game again with our extensive coverage of global sporting events.
+          </p>
+        </div>
+
+        <div className="relative">
+          <Carousel
+            ref={carouselRef}
+            className="w-full"
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            plugins={[autoplayPlugin.current]}
+          >
+            <CarouselContent className="-ml-4">
+              {liveEvents.map((event) => (
+                <CarouselItem key={event.id} className="pl-4 basis-full md:basis-3/4 lg:basis-2/3">
+                  <div className="card-gradient rounded-lg overflow-hidden">
+                    <div className="relative">
+                      <img 
+                        src={event.image} 
+                        alt={event.title}
+                        className="w-full h-auto object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent">
+                        <div className="absolute bottom-0 left-0 p-6">
+                          <div className="flex items-center mb-2">
+                            <span className="animate-pulse mr-2 w-3 h-3 bg-red-600 rounded-full"></span>
+                            <span className="text-white text-sm font-medium">LIVE NOW</span>
+                          </div>
+                          <h3 className="text-2xl md:text-3xl font-bold text-white">{event.title}</h3>
+                          <p className="text-gray-300 mb-4">{event.subtitle}</p>
+                          <Link to="/sports">
+                            <Button className="bg-iptv-purple hover:bg-iptv-dark-purple">
+                              <Play className="mr-2 h-4 w-4" /> Watch Now
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link to="/sports">
+            <Button className="bg-iptv-purple hover:bg-iptv-dark-purple">
+              <TvMinimal className="mr-2 h-4 w-4" /> Browse All Sports
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const TestimonialsSection = () => {
   const carouselRef = useRef(null);
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: false })
+    Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
   );
 
   return (
@@ -165,34 +405,45 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <Carousel
-          ref={carouselRef}
-          className="w-full max-w-5xl mx-auto"
-          opts={{
-            align: "center",
-            loop: true,
-          }}
-          plugins={[autoplayPlugin.current]}
-        >
-          <CarouselContent>
-            {testimonials.map((testimonial) => (
-              <CarouselItem key={testimonial.id} className="px-4 md:basis-1/1">
-                <div className="bg-iptv-dark border border-gray-800 rounded-xl p-6 hover-scale">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-iptv-purple text-iptv-purple" />
-                    ))}
+        <div className="relative">
+          <Carousel
+            ref={carouselRef}
+            className="w-full max-w-5xl mx-auto"
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            plugins={[autoplayPlugin.current]}
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial) => (
+                <CarouselItem key={testimonial.id}>
+                  <div className="bg-iptv-dark border border-gray-800 rounded-xl p-6 hover-scale mx-4">
+                    <div className="flex items-center mb-6">
+                      <img 
+                        src={testimonial.avatar} 
+                        alt={testimonial.name}
+                        className="w-12 h-12 rounded-full mr-4" 
+                      />
+                      <div>
+                        <h4 className="font-medium">{testimonial.name}</h4>
+                        <p className="text-sm text-gray-400">{testimonial.location}</p>
+                      </div>
+                    </div>
+                    <div className="flex mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-iptv-purple text-iptv-purple" />
+                      ))}
+                    </div>
+                    <p className="text-gray-300">{testimonial.text}</p>
                   </div>
-                  <p className="text-gray-300 mb-4">{testimonial.text}</p>
-                  <div>
-                    <h4 className="font-medium">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-400">{testimonial.location}</p>
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
       </div>
     </section>
   );
@@ -269,6 +520,12 @@ const Home = () => {
         
         {/* Channels Carousel */}
         <ChannelsCarousel />
+        
+        {/* Movies Carousel */}
+        <FeaturedMoviesCarousel />
+        
+        {/* Sports Carousel */}
+        <LiveSportsCarousel />
         
         {/* Testimonials */}
         <TestimonialsSection />
