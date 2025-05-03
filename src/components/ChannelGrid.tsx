@@ -25,7 +25,7 @@ const ChannelGrid = () => {
         <Link to={`/live/${channel.id}`} key={channel.id}>
           <Card className="overflow-hidden hover-scale border-gray-800 h-full relative">
             <div 
-              className="absolute inset-0 z-0 opacity-30"
+              className="absolute inset-0 z-0 opacity-50"
               style={{
                 backgroundImage: `url(${channel.background})`,
                 backgroundSize: 'cover',

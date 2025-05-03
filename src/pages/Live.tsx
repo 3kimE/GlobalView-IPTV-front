@@ -20,25 +20,25 @@ const Live = () => {
       id: 101, 
       name: "Sports HD", 
       thumbnail: "https://placehold.co/320x180/8B5CF6/FFFFFF?text=Sports", 
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Sports+Background"
+      background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Sports+Background"
     },
     { 
       id: 102, 
       name: "News Network", 
       thumbnail: "https://placehold.co/320x180/8B5CF6/FFFFFF?text=News", 
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=News+Background"
+      background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=News+Background"
     },
     { 
       id: 103, 
       name: "Movie Central", 
       thumbnail: "https://placehold.co/320x180/8B5CF6/FFFFFF?text=Movies", 
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Movies+Background"
+      background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Movies+Background"
     },
     { 
       id: 104, 
       name: "Documentary HD", 
       thumbnail: "https://placehold.co/320x180/8B5CF6/FFFFFF?text=Docs", 
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Docs+Background"
+      background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Docs+Background"
     },
   ];
 
@@ -52,6 +52,7 @@ const Live = () => {
               <VideoPlayer
                 title={channelTitle}
                 description={channelDescription}
+                poster="https://placehold.co/1280x720/000000/8B5CF6?text=Live+Stream+Preview"
               />
             </div>
             
@@ -63,7 +64,7 @@ const Live = () => {
                     <CardContent className="p-0">
                       <div className="relative">
                         <div 
-                          className="absolute inset-0 z-0"
+                          className="absolute inset-0 z-0 opacity-70"
                           style={{
                             backgroundImage: `url(${channel.background})`,
                             backgroundSize: 'cover',
