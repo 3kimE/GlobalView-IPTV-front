@@ -1,7 +1,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Film, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
