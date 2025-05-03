@@ -11,7 +11,7 @@ const Movies = () => {
       id: 1,
       title: "The Matrix Resurrections",
       image: "https://placehold.co/400x225/8B5CF6/FFFFFF?text=Matrix",
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Matrix+Background",
+      background: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
       category: "Sci-Fi",
       year: "2021"
     },
@@ -19,7 +19,7 @@ const Movies = () => {
       id: 2,
       title: "Dune",
       image: "https://placehold.co/400x225/8B5CF6/FFFFFF?text=Dune",
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Dune+Background",
+      background: "https://images.unsplash.com/photo-1517022812141-23620dba5c23?auto=format&fit=crop&w=1000&q=80",
       category: "Sci-Fi",
       year: "2021"
     },
@@ -27,7 +27,7 @@ const Movies = () => {
       id: 3,
       title: "No Time to Die",
       image: "https://placehold.co/400x225/8B5CF6/FFFFFF?text=Bond",
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Bond+Background",
+      background: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
       category: "Action",
       year: "2021"
     },
@@ -35,7 +35,7 @@ const Movies = () => {
       id: 4,
       title: "Eternals",
       image: "https://placehold.co/400x225/8B5CF6/FFFFFF?text=Eternals",
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Eternals+Background",
+      background: "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1000&q=80",
       category: "Action",
       year: "2021"
     },
@@ -43,7 +43,7 @@ const Movies = () => {
       id: 5,
       title: "Shang-Chi",
       image: "https://placehold.co/400x225/8B5CF6/FFFFFF?text=Shang-Chi",
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Shang+Chi+Background",
+      background: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?auto=format&fit=crop&w=1000&q=80",
       category: "Action",
       year: "2021"
     },
@@ -51,7 +51,7 @@ const Movies = () => {
       id: 6,
       title: "Black Widow",
       image: "https://placehold.co/400x225/8B5CF6/FFFFFF?text=Black+Widow",
-      background: "https://placehold.co/800x450/262626/FFFFFF?text=Black+Widow+Background",
+      background: "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?auto=format&fit=crop&w=1000&q=80",
       category: "Action",
       year: "2021"
     }
@@ -76,11 +76,12 @@ const Movies = () => {
               <div key={movie.id} className="card-gradient rounded-lg overflow-hidden hover-scale">
                 <div className="relative">
                   <div 
-                    className="absolute inset-0 z-0 opacity-60"
+                    className="absolute inset-0 z-0"
                     style={{
                       backgroundImage: `url(${movie.background})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center'
+                      backgroundPosition: 'center',
+                      opacity: '0.85'
                     }}
                   />
                   <img src={movie.image} alt={movie.title} className="w-full h-auto object-cover relative z-10" />

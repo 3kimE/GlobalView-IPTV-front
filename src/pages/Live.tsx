@@ -20,25 +20,25 @@ const Live = () => {
       id: 101, 
       name: "Sports HD", 
       thumbnail: "https://placehold.co/320x180/8B5CF6/FFFFFF?text=Sports", 
-      background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Sports+Background"
+      background: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=800&auto=format&fit=crop"
     },
     { 
       id: 102, 
       name: "News Network", 
       thumbnail: "https://placehold.co/320x180/8B5CF6/FFFFFF?text=News", 
-      background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=News+Background"
+      background: "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=800&auto=format&fit=crop"
     },
     { 
       id: 103, 
       name: "Movie Central", 
       thumbnail: "https://placehold.co/320x180/8B5CF6/FFFFFF?text=Movies", 
-      background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Movies+Background"
+      background: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=800&auto=format&fit=crop" 
     },
     { 
       id: 104, 
       name: "Documentary HD", 
       thumbnail: "https://placehold.co/320x180/8B5CF6/FFFFFF?text=Docs", 
-      background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Docs+Background"
+      background: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?q=80&w=800&auto=format&fit=crop"
     },
   ];
 
@@ -52,7 +52,7 @@ const Live = () => {
               <VideoPlayer
                 title={channelTitle}
                 description={channelDescription}
-                poster="https://placehold.co/1280x720/000000/8B5CF6?text=Live+Stream+Preview"
+                poster="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1280&auto=format&fit=crop"
               />
             </div>
             
@@ -64,11 +64,12 @@ const Live = () => {
                     <CardContent className="p-0">
                       <div className="relative">
                         <div 
-                          className="absolute inset-0 z-0 opacity-70"
+                          className="absolute inset-0 z-0"
                           style={{
                             backgroundImage: `url(${channel.background})`,
                             backgroundSize: 'cover',
-                            backgroundPosition: 'center'
+                            backgroundPosition: 'center',
+                            opacity: '0.8'
                           }}
                         />
                         <img 
