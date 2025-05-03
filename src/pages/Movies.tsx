@@ -84,7 +84,17 @@ const Movies = () => {
                       opacity: '0.85'
                     }}
                   />
-                  <img src={movie.image} alt={movie.title} className="w-full h-auto object-cover relative z-10" />
+                  <div 
+                    className="absolute inset-0 z-0" 
+                    style={{ 
+                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8))' 
+                    }}
+                  />
+                  <img 
+                    src={movie.image} 
+                    alt={movie.title} 
+                    className="w-full h-auto object-cover relative z-10" 
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center z-20">
                     <Button 
                       size="icon" 

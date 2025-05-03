@@ -69,7 +69,13 @@ const Live = () => {
                             backgroundImage: `url(${channel.background})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            opacity: '0.8'
+                            opacity: '0.9'
+                          }}
+                        />
+                        <div 
+                          className="absolute inset-0 z-0" 
+                          style={{ 
+                            background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8))' 
                           }}
                         />
                         <img 
