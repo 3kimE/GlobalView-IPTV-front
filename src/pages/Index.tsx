@@ -12,6 +12,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -19,33 +21,39 @@ const FeaturedMovies = () => {
   const featuredMovies = [
     {
       id: 101,
-      title: "Avengers: Endgame",
-      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Endgame"
+      title: "Fight Night",
+      subtitle: "The Million Dollar Heist",
+      image: "https://assets-prd.ignimgs.com/2022/04/01/fightnight-1648828230312.jpg"
     },
     {
       id: 102,
-      title: "Joker",
-      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Joker"
+      title: "Fly Me to the Moon",
+      subtitle: "",
+      image: "https://cdn.moviefone.com/admin-uploads/posters/flymemoon-movie-poster_1713891737.jpg?d=360x540&q=60"
     },
     {
       id: 103,
-      title: "Parasite",
-      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Parasite"
+      title: "Hellboy",
+      subtitle: "The Crooked Man",
+      image: "https://m.media-amazon.com/images/M/MV5BYzMxYzJkYzktZjRmMy00MGJkLThkMTQtZTBlNjMxMDMxZTQ1XkEyXkFqcGdeQXVyMTY3ODkyNDkz._V1_.jpg"
     },
     {
       id: 104,
-      title: "Tenet",
-      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Tenet"
+      title: "House of the Dragon",
+      subtitle: "",
+      image: "https://m.media-amazon.com/images/M/MV5BZjBiOGIyY2YtOTA3OC00YzY1LThkYjktMGRkYTNhNTExY2I2XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg"
     },
     {
       id: 105,
-      title: "Black Widow",
-      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Black+Widow"
+      title: "Joker",
+      subtitle: "Folie à Deux",
+      image: "https://m.media-amazon.com/images/M/MV5BODUyODM1OGEtNGZjYi00YjA5LTk3ODctNzE0NjQ2NjM5OTU0XkEyXkFqcGdeQXVyNjU2MDUzMjY._V1_FMjpg_UX1000_.jpg"
     },
     {
       id: 106,
-      title: "Dune",
-      image: "https://placehold.co/300x169/8B5CF6/FFFFFF?text=Dune"
+      title: "Dune: Part Two",
+      subtitle: "",
+      image: "https://m.media-amazon.com/images/M/MV5BODk0MzE4MTgtZmNlZS00YzM1LWJkOTQtYTc5MmRlOTZlZDRiXkEyXkFqcGdeQXVyMTI5NzUyMTIz._V1_FMjpg_UX1000_.jpg"
     }
   ];
 
@@ -55,10 +63,10 @@ const FeaturedMovies = () => {
   );
 
   return (
-    <section className="py-16 bg-iptv-dark">
+    <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold gradient-text">Featured Movies</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">Featured Movies & Series</h2>
           <Link to="/movies">
             <Button variant="outline" className="border-iptv-purple text-iptv-purple">
               View All
@@ -77,13 +85,13 @@ const FeaturedMovies = () => {
         >
           <CarouselContent className="-ml-4">
             {featuredMovies.map((movie) => (
-              <CarouselItem key={movie.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={movie.id} className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
                 <div className="card-gradient rounded-lg overflow-hidden hover-scale">
-                  <div className="relative">
+                  <div className="relative aspect-[2/3]">
                     <img 
                       src={movie.image} 
                       alt={movie.title}
-                      className="w-full h-auto object-cover"
+                      className="w-full h-full object-cover rounded-lg"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
                       <Button 
@@ -94,13 +102,16 @@ const FeaturedMovies = () => {
                       </Button>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-medium">{movie.title}</h3>
+                  <div className="p-3">
+                    <h3 className="text-md font-semibold">{movie.title}</h3>
+                    {movie.subtitle && <p className="text-sm text-gray-400">{movie.subtitle}</p>}
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
         </Carousel>
         
         <div className="mt-10 text-center">
