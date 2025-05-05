@@ -8,16 +8,13 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-// Channel logos for carousel - with better images
+// Updated channel logos for carousel - based on provided image
 const channelLogos = [
-  { id: 1, name: "HBO", logo: "https://placehold.co/300x200/262626/FFFFFF?text=HBO", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=HBO+Background" },
-  { id: 2, name: "Netflix", logo: "https://placehold.co/300x200/E50914/FFFFFF?text=Netflix", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Netflix+Background" },
-  { id: 3, name: "Disney+", logo: "https://placehold.co/300x200/0063E5/FFFFFF?text=Disney%2B", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Disney+Background" },
-  { id: 4, name: "ESPN", logo: "https://placehold.co/300x200/D00/FFFFFF?text=ESPN", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=ESPN+Background" },
-  { id: 5, name: "BBC", logo: "https://placehold.co/300x200/000000/FFFFFF?text=BBC", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=BBC+Background" },
-  { id: 6, name: "CNN", logo: "https://placehold.co/300x200/CC0000/FFFFFF?text=CNN", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=CNN+Background" },
-  { id: 7, name: "Fox", logo: "https://placehold.co/300x200/1E4C9A/FFFFFF?text=FOX", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=FOX+Background" },
-  { id: 8, name: "Sky Sports", logo: "https://placehold.co/300x200/0072C9/FFFFFF?text=Sky+Sports", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Sky+Sports+Background" },
+  { id: 1, name: "NHL", logo: "/lovable-uploads/ec28f18f-36e0-48c5-9a2d-a9d64c603149.png" },
+  { id: 2, name: "Peacock", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Peacock" },
+  { id: 3, name: "PPV Live", logo: "https://placehold.co/300x120/000000/FFFFFF?text=PPV+Live" },
+  { id: 4, name: "Premier League", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Premier+League" },
+  { id: 5, name: "Apple TV+", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Apple+TV%2B" },
 ];
 
 // Featured movies for carousel
@@ -203,40 +200,24 @@ const ChannelsCarousel = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-          {channelLogos.map((channel) => (
-            <Link to="/channels" key={channel.id} className="block">
-              <div className="relative group cursor-pointer overflow-hidden rounded-lg">
-                {/* Background Image with Overlay */}
-                <div 
-                  className="w-full h-32 md:h-40 bg-cover bg-center" 
-                  style={{ 
-                    backgroundImage: `url(${channel.background})`,
-                    transition: 'transform 0.3s ease-in-out'
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent group-hover:opacity-75 transition-opacity duration-300"></div>
-                
-                  {/* Channel Logo */}
-                  <div className="absolute inset-0 flex items-center justify-center p-4">
+        {/* New UI for Popular Channels based on the provided image */}
+        <div className="relative rounded-lg overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 z-10"></div>
+          <div className="bg-black py-12 px-4">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 lg:gap-24">
+              {channelLogos.map((channel) => (
+                <Link to="/channels" key={channel.id} className="block group">
+                  <div className="relative h-12 md:h-16 w-auto transition-transform duration-300 hover:scale-110">
                     <img 
                       src={channel.logo} 
                       alt={channel.name}
-                      className="max-h-16 max-w-[80%] group-hover:scale-110 transition-transform duration-300" 
+                      className="h-full w-auto object-contain filter brightness-100 group-hover:brightness-125" 
                     />
                   </div>
-                  
-                  {/* Channel Name */}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
-                    <p className="text-white font-medium">{channel.name}</p>
-                    <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="bg-iptv-purple text-white text-xs px-2 py-1 rounded">Watch Now</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="mt-10 text-center">
@@ -540,7 +521,7 @@ const Home = () => {
           </div>
         </section>
         
-        {/* Features */}
+        {/* Why Choose Us */}
         <WhyChooseUs />
         
         {/* Channels Carousel */}
