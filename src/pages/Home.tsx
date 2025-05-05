@@ -18,13 +18,6 @@ const channelLogos = [
   { id: 6, name: "CNN", logo: "https://placehold.co/300x200/CC0000/FFFFFF?text=CNN", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=CNN+Background" },
   { id: 7, name: "Fox", logo: "https://placehold.co/300x200/1E4C9A/FFFFFF?text=FOX", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=FOX+Background" },
   { id: 8, name: "Sky Sports", logo: "https://placehold.co/300x200/0072C9/FFFFFF?text=Sky+Sports", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Sky+Sports+Background" },
-  { id: 9, name: "Amazon Prime", logo: "https://placehold.co/300x200/00A8E1/FFFFFF?text=Prime", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Prime+Background" },
-  { id: 10, name: "DAZN", logo: "https://placehold.co/300x200/1A1A1A/FFFFFF?text=DAZN", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=DAZN+Background" },
-  { id: 11, name: "Showtime", logo: "https://placehold.co/300x200/B10000/FFFFFF?text=Showtime", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Showtime+Background" },
-  { id: 12, name: "Hulu", logo: "https://placehold.co/300x200/1CE783/FFFFFF?text=Hulu", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Hulu+Background" },
-  { id: 13, name: "Apple TV+", logo: "https://placehold.co/300x200/000000/FFFFFF?text=Apple+TV%2B", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Apple+TV+Background" },
-  { id: 14, name: "Paramount+", logo: "https://placehold.co/300x200/0064FF/FFFFFF?text=Paramount%2B", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Paramount+Background" },
-  { id: 15, name: "Discovery+", logo: "https://placehold.co/300x200/FFA800/FFFFFF?text=Discovery%2B", background: "https://placehold.co/800x450/8B5CF6/FFFFFF?text=Discovery+Background" },
 ];
 
 // Featured movies for carousel
@@ -200,13 +193,8 @@ const WhyChooseUs = () => {
 };
 
 const ChannelsCarousel = () => {
-  const carouselRef = useRef(null);
-  const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
-
   return (
-    <section className="py-16 bg-iptv-dark">
+    <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Channels</h2>
@@ -215,42 +203,40 @@ const ChannelsCarousel = () => {
           </p>
         </div>
 
-        <div className="relative">
-          <Carousel
-            ref={carouselRef}
-            className="w-full"
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[autoplayPlugin.current]}
-          >
-            <CarouselContent className="-ml-4">
-              {channelLogos.map((channel) => (
-                <CarouselItem key={channel.id} className="pl-4 basis-1/5 md:basis-1/5">
-                  <div className="rounded-lg overflow-hidden hover-scale p-4 relative">
-                    <div 
-                      className="absolute inset-0 z-0 opacity-50"
-                      style={{
-                        backgroundImage: `url(${channel.background})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+          {channelLogos.map((channel) => (
+            <Link to="/channels" key={channel.id} className="block">
+              <div className="relative group cursor-pointer overflow-hidden rounded-lg">
+                {/* Background Image with Overlay */}
+                <div 
+                  className="w-full h-32 md:h-40 bg-cover bg-center" 
+                  style={{ 
+                    backgroundImage: `url(${channel.background})`,
+                    transition: 'transform 0.3s ease-in-out'
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent group-hover:opacity-75 transition-opacity duration-300"></div>
+                
+                  {/* Channel Logo */}
+                  <div className="absolute inset-0 flex items-center justify-center p-4">
+                    <img 
+                      src={channel.logo} 
+                      alt={channel.name}
+                      className="max-h-16 max-w-[80%] group-hover:scale-110 transition-transform duration-300" 
                     />
-                    <div className="card-gradient rounded-lg overflow-hidden p-4 flex items-center justify-center h-28 relative z-10">
-                      <img 
-                        src={channel.logo} 
-                        alt={channel.name}
-                        className="max-w-full max-h-full"
-                      />
+                  </div>
+                  
+                  {/* Channel Name */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
+                    <p className="text-white font-medium">{channel.name}</p>
+                    <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="bg-iptv-purple text-white text-xs px-2 py-1 rounded">Watch Now</span>
                     </div>
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
 
         <div className="mt-10 text-center">
