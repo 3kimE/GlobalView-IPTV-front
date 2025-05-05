@@ -15,6 +15,9 @@ const channelLogos = [
   { id: 3, name: "PPV Live", logo: "https://placehold.co/300x120/000000/FFFFFF?text=PPV+Live" },
   { id: 4, name: "Premier League", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Premier+League" },
   { id: 5, name: "Apple TV+", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Apple+TV%2B" },
+  { id: 6, name: "HBO", logo: "https://placehold.co/300x120/000000/FFFFFF?text=HBO" },
+  { id: 7, name: "Netflix", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Netflix" },
+  { id: 8, name: "Disney+", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Disney%2B" },
 ];
 
 // Featured movies for carousel
@@ -190,6 +193,11 @@ const WhyChooseUs = () => {
 };
 
 const ChannelsCarousel = () => {
+  const carouselRef = useRef(null);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
+
   return (
     <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
@@ -200,24 +208,45 @@ const ChannelsCarousel = () => {
           </p>
         </div>
 
-        {/* New UI for Popular Channels based on the provided image */}
+        {/* Channel Carousel */}
         <div className="relative rounded-lg overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 z-10"></div>
-          <div className="bg-black py-12 px-4">
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 lg:gap-24">
-              {channelLogos.map((channel) => (
-                <Link to="/channels" key={channel.id} className="block group">
-                  <div className="relative h-12 md:h-16 w-auto transition-transform duration-300 hover:scale-110">
-                    <img 
-                      src={channel.logo} 
-                      alt={channel.name}
-                      className="h-full w-auto object-contain filter brightness-100 group-hover:brightness-125" 
-                    />
+          <Carousel
+            ref={carouselRef}
+            plugins={[autoplayPlugin.current]}
+            className="w-full"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent>
+              {[...Array(Math.ceil(channelLogos.length / 4))].map((_, slideIndex) => (
+                <CarouselItem key={slideIndex} className="basis-full">
+                  <div className="bg-black py-8 px-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+                      {channelLogos
+                        .slice(slideIndex * 4, slideIndex * 4 + 4)
+                        .filter(Boolean)
+                        .map((channel) => (
+                          <Link to="/channels" key={channel.id} className="block group">
+                            <div className="relative h-16 md:h-20 w-auto transition-transform duration-300 hover:scale-110">
+                              <img
+                                src={channel.logo}
+                                alt={channel.name}
+                                className="h-full w-auto object-contain filter brightness-100 group-hover:brightness-125"
+                              />
+                            </div>
+                          </Link>
+                        ))}
+                    </div>
                   </div>
-                </Link>
+                </CarouselItem>
               ))}
-            </div>
-          </div>
+            </CarouselContent>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 z-10 pointer-events-none"></div>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
 
         <div className="mt-10 text-center">
