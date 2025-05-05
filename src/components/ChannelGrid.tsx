@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 
-// Channel data based on the provided image
+// Channel data with real logos
 const channels = [
   { 
     id: 1, 
@@ -17,77 +17,77 @@ const channels = [
     id: 2, 
     name: "Peacock", 
     category: "Entertainment", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=Peacock", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/NBCUniversal_Peacock_Logo.svg/1200px-NBCUniversal_Peacock_Logo.svg.png", 
     description: "Streaming service by NBCUniversal" 
   },
   { 
     id: 3, 
     name: "PPV Live", 
     category: "Sports", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=PPV+Live", 
+    logo: "https://png.pngtree.com/png-clipart/20220530/original/pngtree-ppv-live-logo-design-template-png-image_7775398.png", 
     description: "Pay-per-view live events" 
   },
   { 
     id: 4, 
     name: "Premier League", 
     category: "Sports", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=Premier+League", 
+    logo: "https://logodownload.org/wp-content/uploads/2016/03/premier-league-logo-0.png", 
     description: "English Premier League football" 
   },
   { 
     id: 5, 
     name: "Apple TV+", 
     category: "Entertainment", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=Apple+TV%2B", 
+    logo: "https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred.png", 
     description: "Apple's streaming service" 
   },
   { 
     id: 6, 
     name: "ESPN", 
     category: "Sports", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=ESPN", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/1280px-ESPN_wordmark.svg.png", 
     description: "Sports programming" 
   },
   { 
     id: 7, 
     name: "HBO", 
     category: "Entertainment", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=HBO", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/HBO_logo.svg/2560px-HBO_logo.svg.png", 
     description: "Premium entertainment channel" 
   },
   { 
     id: 8, 
     name: "Fox Sports", 
     category: "Sports", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=Fox+Sports", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/1280px-FOX_Sports_logo.svg.png", 
     description: "Sports programming and coverage" 
   },
   { 
     id: 9, 
     name: "Netflix", 
     category: "Entertainment", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=Netflix", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png", 
     description: "Streaming movies and TV shows" 
   },
   { 
     id: 10, 
     name: "Disney+", 
     category: "Entertainment", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=Disney%2B", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/2560px-Disney%2B_logo.svg.png", 
     description: "Disney streaming service" 
   },
   { 
     id: 11, 
     name: "NBC Sports", 
     category: "Sports", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=NBC+Sports", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/NBC_Sports_2023.svg/2560px-NBC_Sports_2023.svg.png", 
     description: "Sports coverage and events" 
   },
   { 
     id: 12, 
     name: "Sky Sports", 
     category: "Sports", 
-    logo: "https://placehold.co/300x120/000000/FFFFFF?text=Sky+Sports", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sky_Sports_logo_2017.svg/2560px-Sky_Sports_logo_2017.svg.png", 
     description: "Sports broadcasting" 
   },
 ];

@@ -8,16 +8,18 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-// Updated channel logos for carousel - based on provided image
+// Updated channel logos with real logos
 const channelLogos = [
   { id: 1, name: "NHL", logo: "/lovable-uploads/ec28f18f-36e0-48c5-9a2d-a9d64c603149.png" },
-  { id: 2, name: "Peacock", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Peacock" },
-  { id: 3, name: "PPV Live", logo: "https://placehold.co/300x120/000000/FFFFFF?text=PPV+Live" },
-  { id: 4, name: "Premier League", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Premier+League" },
-  { id: 5, name: "Apple TV+", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Apple+TV%2B" },
-  { id: 6, name: "HBO", logo: "https://placehold.co/300x120/000000/FFFFFF?text=HBO" },
-  { id: 7, name: "Netflix", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Netflix" },
-  { id: 8, name: "Disney+", logo: "https://placehold.co/300x120/000000/FFFFFF?text=Disney%2B" },
+  { id: 2, name: "Peacock", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/NBCUniversal_Peacock_Logo.svg/1200px-NBCUniversal_Peacock_Logo.svg.png" },
+  { id: 3, name: "ESPN", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/1280px-ESPN_wordmark.svg.png" },
+  { id: 4, name: "Premier League", logo: "https://logodownload.org/wp-content/uploads/2016/03/premier-league-logo-0.png" },
+  { id: 5, name: "Apple TV+", logo: "https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred.png" },
+  { id: 6, name: "HBO", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/HBO_logo.svg/2560px-HBO_logo.svg.png" },
+  { id: 7, name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png" },
+  { id: 8, name: "Disney+", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/2560px-Disney%2B_logo.svg.png" },
+  { id: 9, name: "Fox Sports", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/1280px-FOX_Sports_logo.svg.png" },
+  { id: 10, name: "Sky Sports", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sky_Sports_logo_2017.svg/2560px-Sky_Sports_logo_2017.svg.png" },
 ];
 
 // Featured movies for carousel
@@ -195,15 +197,15 @@ const WhyChooseUs = () => {
 const ChannelsCarousel = () => {
   const carouselRef = useRef(null);
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
+    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: false })
   );
 
   return (
-    <section className="py-16 bg-black">
+    <section className="py-16 bg-iptv-purple">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Channels</h2>
-          <p className="text-gray-300 max-w-3xl mx-auto">
+          <p className="text-gray-100 max-w-3xl mx-auto">
             Access thousands of premium channels from around the world, all in HD and 4K quality.
           </p>
         </div>
@@ -222,7 +224,7 @@ const ChannelsCarousel = () => {
             <CarouselContent>
               {[...Array(Math.ceil(channelLogos.length / 4))].map((_, slideIndex) => (
                 <CarouselItem key={slideIndex} className="basis-full">
-                  <div className="bg-black py-8 px-4">
+                  <div className="bg-iptv-purple py-8 px-4">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
                       {channelLogos
                         .slice(slideIndex * 4, slideIndex * 4 + 4)
@@ -243,7 +245,7 @@ const ChannelsCarousel = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 z-10 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-iptv-purple/80 via-transparent to-iptv-purple/80 z-10 pointer-events-none"></div>
             <CarouselPrevious />
             <CarouselNext />
           </Carousel>
@@ -251,7 +253,7 @@ const ChannelsCarousel = () => {
 
         <div className="mt-10 text-center">
           <Link to="/channels">
-            <Button className="bg-iptv-purple hover:bg-iptv-dark-purple">
+            <Button className="bg-iptv-dark-purple hover:bg-iptv-dark-purple/80">
               View All Channels <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
