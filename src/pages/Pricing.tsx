@@ -199,15 +199,17 @@ const PricingPage = () => {
                     ))}
                   </div>
                   
-                  <Button 
-                    className={`w-full ${
-                      plan.popular 
-                        ? "bg-iptv-purple hover:bg-iptv-dark-purple" 
-                        : "bg-gray-800 hover:bg-gray-700"
-                    } text-white`}
-                  >
-                    Get This Plan <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link to={`/payment/${plan.name.toLowerCase().replace(" ", "-")}`}>
+                    <Button 
+                      className={`w-full ${
+                        plan.popular 
+                          ? "bg-iptv-purple hover:bg-iptv-dark-purple" 
+                          : "bg-gray-800 hover:bg-gray-700"
+                      } text-white`}
+                    >
+                      Get This Plan <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>

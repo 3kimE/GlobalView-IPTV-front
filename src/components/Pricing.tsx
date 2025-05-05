@@ -29,7 +29,7 @@ const Pricing = () => {
       ],
       buttonText: "Choose Basic",
       popular: false,
-      checkoutLink: "/checkout/basic"
+      paymentLink: "/payment/basic"
     },
     {
       name: "Premium",
@@ -45,7 +45,7 @@ const Pricing = () => {
       ],
       buttonText: "Choose Premium",
       popular: true,
-      checkoutLink: "/checkout/premium"
+      paymentLink: "/payment/premium"
     },
     {
       name: "Ultimate",
@@ -61,7 +61,7 @@ const Pricing = () => {
       ],
       buttonText: "Choose Ultimate",
       popular: false,
-      checkoutLink: "/checkout/ultimate"
+      paymentLink: "/payment/ultimate"
     }
   ];
 
@@ -109,7 +109,7 @@ const Pricing = () => {
                 ))}
               </div>
               
-              <Link to={plan.checkoutLink}>
+              <Link to={plan.paymentLink}>
                 <Button 
                   className={`w-full ${
                     plan.popular 

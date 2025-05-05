@@ -6,12 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Channels from "./pages/Channels";
+import Movies from "./pages/Movies";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Live from "./pages/Live";
 import Checkout from "./pages/Checkout";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import Payment from "./pages/Payment";
 
 const queryClient = new QueryClient();
 
@@ -23,11 +25,13 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/channels" element={<Channels />} />
+        <Route path="/movies" element={<Movies />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/live/:channelId" element={<Live />} />
         <Route path="/checkout/:planId" element={<Checkout />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/payment/:planId" element={<Payment />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>

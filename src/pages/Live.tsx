@@ -22,7 +22,7 @@ const Live = () => {
   const channelTitle = channelId ? `Channel #${channelId}` : "Featured Channel";
   const channelDescription = "Watch this premium channel with high quality streaming and no interruptions.";
   
-  // Sample recommended channels with enhanced images
+  // Enhanced recommended channels with better images
   const recommendedChannels = [
     { 
       id: 101, 
@@ -85,7 +85,7 @@ const Live = () => {
                                 className="w-full h-full object-cover"
                               />
                               <div 
-                                className="absolute inset-0 z-10" 
+                                className="absolute inset-0" 
                                 style={{ 
                                   background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8))' 
                                 }}
@@ -96,9 +96,9 @@ const Live = () => {
                               >
                                 <Play size={20} className="text-white" />
                               </Button>
-                            </div>
-                            <div className="p-3 bg-gradient-to-t from-black/80 to-transparent">
-                              <h4 className="font-medium truncate">{channel.name}</h4>
+                              <div className="absolute bottom-0 left-0 p-3">
+                                <h4 className="font-medium truncate text-white">{channel.name}</h4>
+                              </div>
                             </div>
                           </CardContent>
                         </Card>
